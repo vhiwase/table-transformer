@@ -9,7 +9,7 @@ conda activate tables-detr
 
 # Training data creation from label studio exported files
 ```sh
-python "./label_studio_extraction/data_generator.py
+python "./label_studio_extraction/data_generator.py"
 ```
 
 # Model Training
