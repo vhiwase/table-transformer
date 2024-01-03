@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+<folder>images</folder>
+<filename>44f0d1e5-W56HZV-15-C-A001_conformed_through_P00134_out_of_sequence.pdf_410.png</filename>
+<source>
+<database>MyDatabase</database>
+<annotation>COCO2017</annotation>
+<image>flickr</image>
+<flickrid>NULL</flickrid>
+<annotator>1</annotator>
+</source>
+<owner>
+<flickrid>NULL</flickrid>
+<name>Label Studio</name>
+</owner>
+<size>
+<width>1700</width>
+<height>2200</height>
+<depth>3</depth>
+</size>
+<segmented>0</segmented>
+<object>
+<name>table</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>94</xmin>
+<ymin>245</ymin>
+<xmax>1605</xmax>
+<ymax>2099</ymax>
+</bndbox>
+</object>
+</annotation>
