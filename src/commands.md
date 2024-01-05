@@ -48,3 +48,38 @@ python main.py --data_type detection --config_file detection_config.json --data_
 ```sh
 python main.py --data_type detection --config_file detection_config.json --data_root_dir "./label_studio_extraction/detection/tabel_transformer/border" --epochs 5 --checkpoint_freq 10 --device cpu --model_save_dir "./fine_tuned_dir" --model_load_path "./model_save_dir/model_1.pth" --load_weights_only
 ```
+
+# Transfer learning
+
+Go to ```~/table-transformer/src``` directory and do the following for downloading pretrained model
+
+```sh
+mkdir fine_tuned_dir
+cd fine_tuned_dir
+```
+```sh
+wget https://huggingface.co/bsmock/tatr-pubtables1m-v1.0/resolve/main/pubtables1m_detection_detr_r18.pth
+```
+```sh
+wget https://huggingface.co/bsmock/tatr-pubtables1m-v1.0/resolve/main/pubtables1m_structure_detr_r18.pth
+```
+```sh
+cd ..
+```
+## Commands for fine tuning
+
+```sh
+python main.py --data_type detection --config_file detection_config.json --data_root_dir "./label_studio_extraction/detection/tabel_transformer/border" --epochs 500 --checkpoint_freq 100 --device cuda --model_save_dir "./model_save_dir" --model_load_path "./fine_tuned_dir/pubtables1m_detection_detr_r18.pth" --load_weights_only
+```
+
+```sh
+python main.py --data_type detection --config_file detection_config.json --data_root_dir "./label_studio_extraction/detection/tabel_transformer/borderless" --epochs 500 --checkpoint_freq 150 --device cuda --model_save_dir "./model_save_dir" --model_load_path "./fine_tuned_dir/pubtables1m_detection_detr_r18.pth" --load_weights_only --lr 0.0005 --lr_drop 5 --lr_gamma 0.9
+```
+
+```sh
+python main.py --data_type structure --config_file structure_config.json --data_root_dir "./label_studio_extraction/structure/tabel_transformer/border" --epochs 500 --checkpoint_freq 100 --device cuda --model_save_dir "./model_save_dir" --model_load_path "./fine_tuned_dir/pubtables1m_structure_detr_r18.pth" --load_weights_only
+```
+
+```sh
+python main.py --data_type structure --config_file structure_config.json --data_root_dir "./label_studio_extraction/structure/tabel_transformer/borderless" --epochs 500 --checkpoint_freq 100 --device cuda --model_save_dir "./model_save_dir" --model_load_path "./fine_tuned_dir/pubtables1m_structure_detr_r18.pth" --load_weights_only
+```
