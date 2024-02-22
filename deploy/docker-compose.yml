@@ -2,13 +2,13 @@ version: '3.7'
 
 services:
 
-  serve_models:
+  serve_table_transformer_models:
     build:
       context: .
       dockerfile: Dockerfile.cloud
-    image: serve_models
+    image: serve_table_transformer_models
     # command: gunicorn --bind 0.0.0.0:8080 --access-logfile - --error-logfile - manage:app
-    container_name: serve_models
+    container_name: serve_table_transformer_models
     ports:
       - 9000:5000
       - 9001:5001
