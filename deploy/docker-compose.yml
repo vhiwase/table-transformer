@@ -10,8 +10,8 @@ services:
     # command: gunicorn --bind 0.0.0.0:8080 --access-logfile - --error-logfile - manage:app
     container_name: serve_models
     ports:
-      - 5000:5000
-      - 5001:5001
-      - 5002:5002
+      - 9000:5000
+      - 9001:5001
+      - 9002:5002
     volumes:
       - ./model_store:/home/model-server/model_store
