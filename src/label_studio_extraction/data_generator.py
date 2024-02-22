@@ -8,13 +8,17 @@ train_ratio = 0.7  # 70% for training
 test_ratio = 0.2   # 20% for testing
 val_ratio = 0.1    # 10% for validation
 
-def generate_data(path):
+def generate_data(path, exclude=[]):
     if path is None:
         return
     else:
         print(f"Processing {path}")
     for folder in os.listdir(path):
+        if folder in exclude:
+            continue
         folder_path = path / folder
+        if not folder_path.is_dir():
+            continue
         parts = list(folder_path.parts)
         if 'label_studio' in parts:
             parts[parts.index('label_studio')] = 'tabel_transformer'
@@ -114,7 +118,8 @@ if __name__ == '__main__':
     else:
         STRUCTURE_LABEL_STUDIO_PATH = None
     path = DETECTION_LABEL_STUDIO_PATH
-    generate_data(path)
+    generate_data(path, exclude=['iteration4_aug_correction', 'border', 'borderless', 'iteration_3_aug', 'iteration2_data'])
     path = STRUCTURE_LABEL_STUDIO_PATH
-    generate_data(path)
+    generate_data(path, exclude=['Table_structure_Border', 'iteration4_aug_correction', 'border', 'borderless', 'iteration_3_aug', 'iteration2_data'])
+
 

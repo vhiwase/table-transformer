@@ -1,11 +1,14 @@
 # Instruction
-Go to src folder path ```table-transformer/src```, open terminal run the following command
+Go to src folder path ```table-transformer```, open terminal run the following command
 
 # Create and Activate environment
 ```sh
 conda env create -f environment.yml
 conda activate tables-detr
+conda env remove --name tables-detr
 ```
+
+Go to src folder path ```table-transformer/src```, open terminal run the following command
 
 # Training data creation from label studio exported files
 ```sh
@@ -81,5 +84,12 @@ python main.py --data_type structure --config_file structure_config.json --data_
 ```
 
 ```sh
-python main.py --data_type structure --config_file structure_config.json --data_root_dir "./label_studio_extraction/structure/tabel_transformer/borderless" --epochs 500 --checkpoint_freq 100 --device cuda --model_save_dir "./model_save_dir" --model_load_path "./fine_tuned_dir/pubtables1m_structure_detr_r18.pth" --load_weights_only
+python main.py --data_type structure --config_file structure_config.json --data_root_dir "./label_studio_extraction/structure/tabel_transformer/Table_structure_Border" --epochs 500 --checkpoint_freq 50 --device cuda --model_save_dir "./model_save_dir_Border" --model_load_path "./fine_tuned_dir/pubtables1m_structure_detr_r18.pth" --load_weights_only --lr 0.0005 --lr_drop 5 --lr_gamma 0.9
+
+python main.py --data_type structure --config_file structure_config.json --data_root_dir "./label_studio_extraction/structure/tabel_transformer/Table_structure_Borderless" --epochs 500 --checkpoint_freq 50 --device cuda --model_save_dir "./model_save_dir_Borderless" --model_load_path "./fine_tuned_dir/pubtables1m_structure_detr_r18.pth" --load_weights_only --lr 0.0005 --lr_drop 5 --lr_gamma 0.9
+```
+
+## Custom prediction
+```sh
+python inference.py --image_dir "./test_samples/test_images" --mode recognize --structure_config_path structure_config.json --structure_model_path "./model_save_dir/model_500.pth" --structure_device cpu --out_dir "./test_samples/test_images_prediction"  -o -z
 ```

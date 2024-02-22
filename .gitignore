@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+src/demo
+src/fine_tuned_dir
+src/label_studio_extraction
+src/model_save_dir_Border
+src/model_save_dir_Borderless
+src/test_samples
+src/test_samples.py
+deploy/model_store/
+deploy/my_model/
