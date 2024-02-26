@@ -120,6 +120,6 @@ if __name__ == '__main__':
     path = DETECTION_LABEL_STUDIO_PATH
     generate_data(path, exclude=['iteration4_aug_correction', 'border', 'borderless', 'iteration_3_aug', 'iteration2_data'])
     path = STRUCTURE_LABEL_STUDIO_PATH
-    generate_data(path, exclude=['Table_structure_Border', 'iteration4_aug_correction', 'border', 'borderless', 'iteration_3_aug', 'iteration2_data'])
+    generate_data(path, exclude=['Table_structure_Border', 'iteration4_aug_correction', 'border', 'borderless', 'iteration_3_aug', 'iteration2_data', 'Table_structure_Borderless'])
 
 
