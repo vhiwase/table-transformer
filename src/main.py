@@ -300,16 +300,29 @@ def train(args, model, criterion, postprocessors, device):
         print('-' * 100)
 
         epoch_timing = datetime.now()
-        train_stats = train_one_epoch(
-            model,
-            criterion,
-            data_loader_train,
-            optimizer,
-            device,
-            epoch,
-            args.clip_max_norm,
-            max_batches_per_epoch=max_batches_per_epoch,
-            print_freq=1000)
+        try:
+            train_stats = train_one_epoch(
+                model,
+                criterion,
+                data_loader_train,
+                optimizer,
+                device,
+                epoch,
+                args.clip_max_norm,
+                max_batches_per_epoch=max_batches_per_epoch,
+                print_freq=1000)
+        except RuntimeError:
+            train_stats = train_one_epoch(
+                model,
+                criterion,
+                data_loader_train,
+                optimizer,
+                device,
+                epoch,
+                args.clip_max_norm,
+                max_batches_per_epoch=max_batches_per_epoch,
+                print_freq=1000)
+
         print("Epoch completed in ", datetime.now() - epoch_timing)
 
         lr_scheduler.step()
